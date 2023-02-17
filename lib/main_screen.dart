@@ -8,74 +8,72 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: darkColor,
-        body: ListView(
+        body: SingleChildScrollView(
           padding: EdgeInsets.zero,
-          children: [
-            Column(
-              children: [
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.only(left: 16, right: 16, bottom: 22),
-                  decoration: BoxDecoration(
-                      color: lightColor,
-                      borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(32),
-                          bottomRight: Radius.circular(32))),
-                  child: Column(
-                    children: [
-                      SafeArea(
-                        child: Container(
-                          width: 200,
-                          child: Image.asset('assets/logo.png'),
-                        ),
+          child: (Column(
+            children: [
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.only(left: 16, right: 16, bottom: 22),
+                decoration: BoxDecoration(
+                    color: lightColor,
+                    borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(32),
+                        bottomRight: Radius.circular(32))),
+                child: Column(
+                  children: [
+                    SafeArea(
+                      child: Container(
+                        width: 200,
+                        child: Image.asset('assets/logo.png'),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 16),
-                        child: Container(
-                          child: Image.asset('assets/rebel.png'),
-                        ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16),
+                      child: Container(
+                        child: Image.asset('assets/rebel.png'),
                       ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      Text("HONDA REBEL 500",
-                          style: darkBoldTextStyle.copyWith(fontSize: 22)),
-                      SizedBox(
-                        height: 8,
-                      ),
-                      Text(
-                        'Available Now',
-                        style: darkLightTextStyle.copyWith(fontSize: 14),
-                      )
-                    ],
-                  ),
-                ),
-                Container(
-                  width: double.infinity,
-                  padding: EdgeInsets.only(top: 24, left: 16),
-                  child: Text(
-                    'RECOMMENDED',
-                    style: lightSemiBoldTextStyle.copyWith(fontSize: 16),
-                  ),
-                ),
-                GridView.count(
-                  padding: EdgeInsets.all(16),
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  crossAxisSpacing: 20,
-                  mainAxisSpacing: 20,
-                  crossAxisCount: 2,
-                  children: const [
-                    ItemCatalog(),
-                    ItemCatalog(),
-                    ItemCatalog(),
-                    ItemCatalog(),
-                    ItemCatalog(),
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    Text("HONDA REBEL 500",
+                        style: darkBoldTextStyle.copyWith(fontSize: 22)),
+                    SizedBox(
+                      height: 8,
+                    ),
+                    Text(
+                      'Available Now',
+                      style: darkLightTextStyle.copyWith(fontSize: 14),
+                    )
                   ],
-                )
-              ],
-            ),
-          ],
+                ),
+              ),
+              Container(
+                width: double.infinity,
+                padding: EdgeInsets.only(top: 24, left: 16),
+                child: Text(
+                  'RECOMMENDED',
+                  style: lightSemiBoldTextStyle.copyWith(fontSize: 16),
+                ),
+              ),
+              GridView.count(
+                padding: EdgeInsets.all(16),
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                crossAxisCount: 2,
+                children: const [
+                  ItemCatalog(),
+                  ItemCatalog(),
+                  ItemCatalog(),
+                  ItemCatalog(),
+                  ItemCatalog(),
+                ],
+              )
+            ],
+          )),
         ));
   }
 }
@@ -115,7 +113,6 @@ class ItemCatalog extends StatelessWidget {
               )
             ],
           ),
-        )
-    );
+        ));
   }
 }
