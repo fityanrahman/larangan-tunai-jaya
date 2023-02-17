@@ -61,13 +61,11 @@ class MainScreen extends StatelessWidget {
                 GridView.count(
                   padding: EdgeInsets.all(16),
                   shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
                   crossAxisCount: 2,
                   children: const [
-                    ItemCatalog(),
-                    ItemCatalog(),
-                    ItemCatalog(),
                     ItemCatalog(),
                     ItemCatalog(),
                     ItemCatalog(),
