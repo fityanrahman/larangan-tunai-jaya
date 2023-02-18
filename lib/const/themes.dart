@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 Color darkColor = const Color(0xff171C2A);
 Color lightColor = const Color(0xffF8F8FA);
 Color orangeColor = const Color(0xffE96013);
+Color redColor = const Color(0xffE96013);
+Color blueColor = const Color(0xff0795ba);
 Color greenColor = const Color(0xff0FB029);
 
 TextStyle darkLightTextStyle = GoogleFonts.openSans(
