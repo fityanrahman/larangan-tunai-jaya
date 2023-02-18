@@ -29,35 +29,35 @@ class DetailScreen extends StatelessWidget {
                         bottomLeft: Radius.circular(32),
                         bottomRight: Radius.circular(32))),
                 width: double.infinity,
-                padding: EdgeInsets.all(16),
-                margin: EdgeInsets.only(bottom: 28),
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.only(bottom: 28),
                 child: Column(
                   children: [
                     Text(
                       'HONDA REBEL 500',
                       style: darkBoldTextStyle.copyWith(fontSize: 24),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Text(
                       'Rp 199.838.000',
                       style: darkBoldTextStyle.copyWith(fontSize: 16),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 24,
                     ),
                     Text(
                       'GRAPHITE BLACK',
                       style: darkSemiBoldTextStyle.copyWith(fontSize: 14),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 16,
                     ),
                     Container(
                         width: 240, child: Image.asset('assets/rebel.png')),
-                    SizedBox(
-                      height: 24,
+                    const SizedBox(
+                      height: 12,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -67,8 +67,8 @@ class DetailScreen extends StatelessWidget {
                         MotorColor(color: '283461')
                       ],
                     ),
-                    SizedBox(
-                      height: 12,
+                    const SizedBox(
+                      height: 16,
                     ),
                     Text(
                       'Color Variant',
@@ -81,7 +81,7 @@ class DetailScreen extends StatelessWidget {
                 'SPECIFICATION',
                 style: lightBoldTextStyle.copyWith(fontSize: 14),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               ContentSpec(title: 'Dimension', detail: '2.205 x 820 x 1.090 mm'),
@@ -90,29 +90,9 @@ class DetailScreen extends StatelessWidget {
                   title: 'Engine Type',
                   detail: '4-Stroke, DOHC Parallel Twin Cylinder'),
               ContentSpec(title: 'Displacement', detail: '471,03 cc'),
-              SizedBox(
-                height: 16,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: ElevatedButton(
-                    onPressed: () {},
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                      ),
-                      backgroundColor: MaterialStateProperty.all(orangeColor),
-                    ),
-                    child: Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(16),
-                      child: Text(
-                        'Buy Now',
-                        textAlign: TextAlign.center,
-                        style: lightBoldTextStyle.copyWith(fontSize: 14),
-                      ),
-                    )),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                child: OrangeRoundedButton(),
               )
             ],
           )),
@@ -153,7 +133,7 @@ class ContentSpec extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(bottom: 8),
+      margin: const EdgeInsets.only(bottom: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -161,13 +141,40 @@ class ContentSpec extends StatelessWidget {
             '$title :',
             style: lightRegularTextStyle.copyWith(fontSize: 14),
           ),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           Text(
             detail,
             style: lightSemiBoldTextStyle.copyWith(fontSize: 14),
           ),
         ],
       ),
+    );
+  }
+}
+
+class OrangeRoundedButton extends StatelessWidget {
+  const OrangeRoundedButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: () {},
+        style: ButtonStyle(
+          shape: MaterialStateProperty.all(
+            RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12)),
+          ),
+          backgroundColor: MaterialStateProperty.all(orangeColor),
+        ),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.all(16),
+          child: Text(
+            'Buy Now',
+            textAlign: TextAlign.center,
+            style: lightBoldTextStyle.copyWith(fontSize: 14),
+          ),
+        )
     );
   }
 }
