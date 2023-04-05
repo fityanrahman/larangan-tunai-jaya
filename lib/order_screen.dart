@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:submission/const/const_strings.dart';
 import 'package:submission/const/themes.dart';
+import 'package:submission/funs/screen_funs.dart';
 
 class OrderScreen extends StatefulWidget {
   const OrderScreen({Key? key}) : super(key: key);
@@ -47,7 +48,8 @@ class _OrderScreenState extends State<OrderScreen> {
                     height: 32,
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 24),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16, vertical: 24),
                     child: Column(
                       children: [
                         TextField(
@@ -61,7 +63,8 @@ class _OrderScreenState extends State<OrderScreen> {
                             ),
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide(color: orangeColor, width: 2)),
+                                borderSide:
+                                    BorderSide(color: orangeColor, width: 2)),
                             filled: true,
                             fillColor: lightColor,
                             border: OutlineInputBorder(
@@ -83,7 +86,8 @@ class _OrderScreenState extends State<OrderScreen> {
                             ),
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(8),
-                                borderSide: BorderSide(color: orangeColor, width: 2)),
+                                borderSide:
+                                    BorderSide(color: orangeColor, width: 2)),
                             filled: true,
                             fillColor: lightColor,
                             border: OutlineInputBorder(
@@ -91,17 +95,18 @@ class _OrderScreenState extends State<OrderScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 24,
                         ),
                         Container(
                           width: double.infinity,
                           child: Text(
                             'Payment Option',
-                            style: lightSemiBoldTextStyle.copyWith(fontSize: 14),
+                            style:
+                                lightSemiBoldTextStyle.copyWith(fontSize: 14),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Row(
@@ -127,16 +132,17 @@ class _OrderScreenState extends State<OrderScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 4,
                                 ),
                                 Text(
                                   'Installment',
-                                  style: lightRegularTextStyle.copyWith(fontSize: 14),
+                                  style: lightRegularTextStyle.copyWith(
+                                      fontSize: 14),
                                 )
                               ],
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 32,
                             ),
                             Row(
@@ -160,32 +166,33 @@ class _OrderScreenState extends State<OrderScreen> {
                                     ),
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 4,
                                 ),
                                 Text(
                                   'Cash',
-                                  style: lightRegularTextStyle.copyWith(fontSize: 14),
+                                  style: lightRegularTextStyle.copyWith(
+                                      fontSize: 14),
                                 )
                               ],
                             ),
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 12,
                         ),
                         Text(
                           option == 0 ? thankInstallment : thankCash,
                           style: orangeRegularTextStyle.copyWith(fontSize: 12),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 42,
                         ),
                         Text(
                           'VEHICLE PURCHASE DETAIL',
                           style: lightBoldTextStyle.copyWith(fontSize: 14),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 32,
                         ),
                         Row(
@@ -196,11 +203,11 @@ class _OrderScreenState extends State<OrderScreen> {
                                 decoration: BoxDecoration(
                                     color: lightColor,
                                     borderRadius: BorderRadius.circular(16)),
-                                padding: EdgeInsets.all(4),
+                                padding: const EdgeInsets.all(4),
                                 child: Image.asset('assets/rebel.png'),
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               width: 12,
                             ),
                             Expanded(
@@ -210,23 +217,24 @@ class _OrderScreenState extends State<OrderScreen> {
                                 children: [
                                   Text(
                                     'HONDA REBEL 500',
-                                    style: lightBoldTextStyle.copyWith(fontSize: 14),
+                                    style: lightBoldTextStyle.copyWith(
+                                        fontSize: 14),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 8,
                                   ),
                                   Text(
                                     'GRAPHITE BLACK',
-                                    style:
-                                        lightRegularTextStyle.copyWith(fontSize: 12),
+                                    style: lightRegularTextStyle.copyWith(
+                                        fontSize: 12),
                                   ),
-                                  SizedBox(
+                                  const SizedBox(
                                     height: 12,
                                   ),
                                   Text(
                                     'Rp. 199.838.000 (Free Delivery)',
-                                    style:
-                                        lightRegularTextStyle.copyWith(fontSize: 12),
+                                    style: lightRegularTextStyle.copyWith(
+                                        fontSize: 12),
                                   ),
                                 ],
                               ),
@@ -240,7 +248,14 @@ class _OrderScreenState extends State<OrderScreen> {
               ),
             ),
           ),
-          OrangeRoundedTwoButton(text: 'Confirm Order'),
+          Container(
+            padding: EdgeInsets.only(
+              bottom: ScreenFuns().getPaddingBottom(context),
+              left: 16,
+              right: 16,
+            ),
+            child: OrangeRoundedTwoButton(text: 'Confirm Order'),
+          ),
         ],
       ),
     );
