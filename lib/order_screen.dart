@@ -12,11 +12,13 @@ class OrderScreen extends StatefulWidget {
 
 class _OrderScreenState extends State<OrderScreen> {
   int? option;
+  bool? order;
 
   @override
   void initState() {
     setState(() {
       option = 0;
+      order  = true;
     });
     super.initState();
   }
@@ -126,6 +128,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       onChanged: (int? value) {
                                         setState(() {
                                           option = value;
+                                          order = true;
                                           print('radio adalah :$option');
                                         });
                                       },
@@ -160,6 +163,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                       onChanged: (int? value) {
                                         setState(() {
                                           option = value;
+                                          order = false;
                                           print('radio adalah :$option');
                                         });
                                       },
@@ -254,7 +258,7 @@ class _OrderScreenState extends State<OrderScreen> {
               left: 16,
               right: 16,
             ),
-            child: OrangeRoundedTwoButton(text: 'Confirm Order'),
+            child: OrangeRoundedTwoButton(text: 'Confirm Order', order: order!),
           ),
         ],
       ),
@@ -264,27 +268,80 @@ class _OrderScreenState extends State<OrderScreen> {
 
 class OrangeRoundedTwoButton extends StatelessWidget {
   String text;
+  bool order;
 
-  OrangeRoundedTwoButton({Key? key, required this.text}) : super(key: key);
+  OrangeRoundedTwoButton({Key? key, required this.text, required this.order})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-        onPressed: () {},
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+      onPressed: () {
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => OrderDialog(
+            order: order,
           ),
-          backgroundColor: MaterialStateProperty.all(orangeColor),
+        );
+      },
+      style: ButtonStyle(
+        shape: MaterialStateProperty.all(
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
         ),
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-            style: lightBoldTextStyle.copyWith(fontSize: 14),
+        backgroundColor: MaterialStateProperty.all(orangeColor),
+      ),
+      child: Container(
+        width: double.infinity,
+        padding: const EdgeInsets.all(16),
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: lightBoldTextStyle.copyWith(fontSize: 14),
+        ),
+      ),
+    );
+  }
+}
+
+class OrderDialog extends StatelessWidget {
+  bool order;
+
+  OrderDialog({Key? key, required this.order}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      title: Center(
+        child: Text(
+          order ? titleOrderSuccess : titleOrderFailed,
+          style: order
+              ? greenBoldTextStyle.copyWith(fontSize: 16)
+              : orangeBoldTextStyle.copyWith(fontSize: 16),
+        ),
+      ),
+      content: Text(
+        order ? orderSuccess : orderFailed,
+        textAlign: TextAlign.center,
+        style: darkRegularTextStyle.copyWith(
+          fontSize: 14,
+        ),
+      ),
+      actions: [
+        Center(
+          child: TextButton(
+            onPressed: () {
+              Navigator.pop(context, 'OK');
+            },
+            child: Text(
+              'OK',
+              style: darkSemiBoldTextStyle,
+            ),
           ),
-        ));
+        ),
+      ],
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(24),
+      ),
+    );
   }
 }
