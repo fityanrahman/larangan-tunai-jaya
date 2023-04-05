@@ -30,6 +30,7 @@ class MainScreen extends StatelessWidget {
                     children: [
                       SafeArea(
                         child: Container(
+                          margin: EdgeInsets.only(top: 8),
                           width: 200,
                           child: Image.asset('assets/logo.png'),
                         ),
@@ -65,6 +66,7 @@ class MainScreen extends StatelessWidget {
                 ),
               ),
               GridView.count(
+                childAspectRatio: 7/8,
                 padding: EdgeInsets.all(16),
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -90,42 +92,40 @@ class ItemCatalog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-        aspectRatio: 1 / 1,
-        child: InkWell(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => DetailScreen()));
-          },
-          child: Container(
-            decoration: BoxDecoration(
-                color: lightColor,
-                borderRadius: BorderRadius.all(Radius.circular(16))),
-            padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
-            child: Column(
-              children: [
-                Container(
-                  child: Image.asset('assets/rebel.png'),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  'REBEL 500',
-                  style: darkBoldTextStyle.copyWith(fontSize: 14),
-                ),
-                SizedBox(
-                  height: 4,
-                ),
-                Expanded(
-                  child: Text(
-                    'Rp 199 mio',
-                    style: darkRegularTextStyle.copyWith(fontSize: 12),
-                  ),
-                )
-              ],
+    return InkWell(
+      onTap: () {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => DetailScreen()));
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            color: lightColor,
+            borderRadius: BorderRadius.all(Radius.circular(16))),
+        padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+        child: Column(
+          children: [
+            Container(
+              child: Image.asset('assets/rebel.png'),
             ),
-          ),
-        ));
+            const SizedBox(
+              height: 10,
+            ),
+            Text(
+              'REBEL 500',
+              style: darkBoldTextStyle.copyWith(fontSize: 14),
+            ),
+            SizedBox(
+              height: 4,
+            ),
+            Expanded(
+              child: Text(
+                'Rp 199 mio',
+                style: darkRegularTextStyle.copyWith(fontSize: 12),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -7,6 +7,7 @@ Color orangeColor = const Color(0xffE96013);
 Color redColor = const Color(0xffE96013);
 Color blueColor = const Color(0xff0795ba);
 Color greenColor = const Color(0xff0FB029);
+Color grayColor = const Color(0xffC0C0C0);
 
 TextStyle darkLightTextStyle = GoogleFonts.openSans(
     color: darkColor,
@@ -40,5 +41,20 @@ TextStyle lightSemiBoldTextStyle = GoogleFonts.openSans(
 
 TextStyle lightBoldTextStyle = GoogleFonts.openSans(
     color: lightColor,
+    fontWeight: FontWeight.w700
+);
+
+TextStyle orangeRegularTextStyle = GoogleFonts.openSans(
+    color: orangeColor,
+    fontWeight: FontWeight.w400
+);
+
+TextStyle orangeBoldTextStyle = GoogleFonts.openSans(
+    color: orangeColor,
+    fontWeight: FontWeight.w700
+);
+
+TextStyle greenBoldTextStyle = GoogleFonts.openSans(
+    color: greenColor,
     fontWeight: FontWeight.w700
 );

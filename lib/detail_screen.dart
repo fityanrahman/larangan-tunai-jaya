@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:submission/const/string_to_hex.dart';
 import 'package:submission/const/themes.dart';
+import 'package:submission/order_screen.dart';
+import 'package:submission/widgets/orange_rounded_button.dart';
 
 class DetailScreen extends StatelessWidget {
   const DetailScreen({Key? key}) : super(key: key);
@@ -90,9 +92,12 @@ class DetailScreen extends StatelessWidget {
                   title: 'Engine Type',
                   detail: '4-Stroke, DOHC Parallel Twin Cylinder'),
               ContentSpec(title: 'Displacement', detail: '471,03 cc'),
-              const Padding(
+              Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                child: OrangeRoundedButton(),
+                child: OrangeRoundedButton(
+                  routeTarget: OrderScreen(),
+                  text: 'Buy Now',
+                ),
               )
             ],
           )),
@@ -148,33 +153,6 @@ class ContentSpec extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-class OrangeRoundedButton extends StatelessWidget {
-  const OrangeRoundedButton({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: () {},
-        style: ButtonStyle(
-          shape: MaterialStateProperty.all(
-            RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12)),
-          ),
-          backgroundColor: MaterialStateProperty.all(orangeColor),
-        ),
-        child: Container(
-          width: double.infinity,
-          padding: const EdgeInsets.all(16),
-          child: Text(
-            'Buy Now',
-            textAlign: TextAlign.center,
-            style: lightBoldTextStyle.copyWith(fontSize: 14),
-          ),
-        )
     );
   }
 }
