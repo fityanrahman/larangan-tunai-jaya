@@ -4,7 +4,18 @@ import 'package:submission/const/themes.dart';
 import 'package:submission/funs/screen_funs.dart';
 
 class OrderScreen extends StatefulWidget {
-  const OrderScreen({Key? key}) : super(key: key);
+  String img;
+  String name;
+  String color;
+  String price;
+
+  OrderScreen(
+      {Key? key,
+      required this.img,
+      required this.name,
+      required this.color,
+      required this.price})
+      : super(key: key);
 
   @override
   State<OrderScreen> createState() => _OrderScreenState();
@@ -18,7 +29,7 @@ class _OrderScreenState extends State<OrderScreen> {
   void initState() {
     setState(() {
       option = 0;
-      order  = true;
+      order = true;
     });
     super.initState();
   }
@@ -207,8 +218,8 @@ class _OrderScreenState extends State<OrderScreen> {
                                 decoration: BoxDecoration(
                                     color: lightColor,
                                     borderRadius: BorderRadius.circular(16)),
-                                padding: const EdgeInsets.all(4),
-                                child: Image.asset('assets/rebel.png'),
+                                padding: const EdgeInsets.all(8),
+                                child: Image.asset(widget.img),
                               ),
                             ),
                             const SizedBox(
@@ -220,7 +231,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    'HONDA REBEL 500',
+                                    widget.name,
                                     style: lightBoldTextStyle.copyWith(
                                         fontSize: 14),
                                   ),
@@ -228,7 +239,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                     height: 8,
                                   ),
                                   Text(
-                                    'GRAPHITE BLACK',
+                                    widget.color,
                                     style: lightRegularTextStyle.copyWith(
                                         fontSize: 12),
                                   ),
@@ -236,7 +247,7 @@ class _OrderScreenState extends State<OrderScreen> {
                                     height: 12,
                                   ),
                                   Text(
-                                    'Rp. 199.838.000 (Free Delivery)',
+                                    'Rp. ${widget.price} (Free Delivery)',
                                     style: lightRegularTextStyle.copyWith(
                                         fontSize: 12),
                                   ),

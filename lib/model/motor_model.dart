@@ -39,7 +39,7 @@ class ColorModel {
 
 var motorList = [
   MotorModel(
-      name: 'Rebel 500',
+      name: 'REBEL 500',
       price: "199.838.000",
       banner: "assets/banner_rebel.jpeg",
       img: "assets/rebel.png",
@@ -55,7 +55,7 @@ var motorList = [
       ]
   ),
   MotorModel(
-      name: 'Goldwing 1800',
+      name: 'GOLDWING 1800',
       price: "1.052.500.000",
       banner: "assets/banner_goldwing.jpeg",
       img: "assets/goldwing.png",

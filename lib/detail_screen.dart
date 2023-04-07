@@ -135,7 +135,11 @@ class _DetailScreenState extends State<DetailScreen> {
                         vertical: 24,
                       ),
                       child: OrangeRoundedButton(
-                        routeTarget: const OrderScreen(),
+                        routeTarget: OrderScreen(
+                            img: widget.motorModel.color[indexColor].img,
+                            name: widget.motorModel.name,
+                            color: widget.motorModel.color[indexColor].name,
+                            price: widget.motorModel.price),
                         text: 'Buy Now',
                       ),
                     )

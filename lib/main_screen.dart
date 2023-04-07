@@ -40,13 +40,13 @@ class MainScreen extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 16),
                         child: Container(
-                          child: Image.asset('assets/rebel.png'),
+                          child: Image.asset(motorList[0].img),
                         ),
                       ),
                       const SizedBox(
                         height: 16,
                       ),
-                      Text("HONDA REBEL 500",
+                      Text('HONDA ${motorList[0].name}',
                           style: darkBoldTextStyle.copyWith(fontSize: 22)),
                       const SizedBox(
                         height: 8,
