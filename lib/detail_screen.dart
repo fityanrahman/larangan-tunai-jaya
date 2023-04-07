@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:submission/const/string_to_hex.dart';
 import 'package:submission/const/themes.dart';
+import 'package:submission/model/motor_model.dart';
 import 'package:submission/order_screen.dart';
 import 'package:submission/widgets/orange_rounded_button.dart';
 
-class DetailScreen extends StatelessWidget {
-  const DetailScreen({Key? key}) : super(key: key);
+class DetailScreen extends StatefulWidget {
+  MotorModel motorModel;
+
+  DetailScreen({Key? key, required this.motorModel}) : super(key: key);
+
+  @override
+  State<DetailScreen> createState() => _DetailScreenState();
+}
+
+class _DetailScreenState extends State<DetailScreen> {
+  int indexColor = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +29,7 @@ class DetailScreen extends StatelessWidget {
                 aspectRatio: 25 / 12,
                 child: Container(
                   child: Image.asset(
-                    'assets/banner_rebel.jpeg',
+                    widget.motorModel.banner,
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -36,38 +46,56 @@ class DetailScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Text(
-                      'HONDA REBEL 500',
+                      widget.motorModel.name,
                       style: darkBoldTextStyle.copyWith(fontSize: 24),
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     Text(
-                      'Rp 199.838.000',
+                      'Rp ${widget.motorModel.price}',
                       style: darkBoldTextStyle.copyWith(fontSize: 16),
                     ),
                     const SizedBox(
                       height: 24,
                     ),
                     Text(
-                      'GRAPHITE BLACK',
+                      widget.motorModel.color[indexColor].name,
                       style: darkSemiBoldTextStyle.copyWith(fontSize: 14),
                     ),
                     const SizedBox(
                       height: 16,
                     ),
                     Container(
-                        width: 240, child: Image.asset('assets/rebel.png')),
+                        width: 240,
+                        child: Image.asset(
+                            widget.motorModel.color[indexColor].img)),
                     const SizedBox(
                       height: 12,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        MotorColor(color: '000000'),
-                        MotorColor(color: '7d7d7d'),
-                        MotorColor(color: '283461')
-                      ],
+                    Container(
+                      width: double.infinity,
+                      height: 30,
+                      child: Center(
+                        child: ListView(
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          children: [
+                            for (int i = 0;
+                                i < widget.motorModel.color.length;
+                                i++)
+                              InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      indexColor = i;
+                                      print('index color = $indexColor');
+                                    });
+                                  },
+                                  child: MotorColor(
+                                      color: widget.motorModel.color[i].hex))
+                          ],
+                        ),
+                      ),
                     ),
                     const SizedBox(
                       height: 16,
@@ -79,26 +107,41 @@ class DetailScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              Text(
-                'SPECIFICATION',
-                style: lightBoldTextStyle.copyWith(fontSize: 14),
-              ),
-              const SizedBox(
-                height: 16,
-              ),
-              ContentSpec(title: 'Dimension', detail: '2.205 x 820 x 1.090 mm'),
-              ContentSpec(title: 'Fuel Tank Capacity', detail: '11 L'),
-              ContentSpec(
-                  title: 'Engine Type',
-                  detail: '4-Stroke, DOHC Parallel Twin Cylinder'),
-              ContentSpec(title: 'Displacement', detail: '471,03 cc'),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 24),
-                child: OrangeRoundedButton(
-                  routeTarget: OrderScreen(),
-                  text: 'Buy Now',
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  children: [
+                    Text(
+                      'SPECIFICATION',
+                      style: lightBoldTextStyle.copyWith(fontSize: 14),
+                    ),
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    ContentSpec(
+                        title: 'Dimension',
+                        detail: widget.motorModel.specification.dimension),
+                    ContentSpec(
+                        title: 'Fuel Tank Capacity',
+                        detail: '${widget.motorModel.specification.fuel} L'),
+                    ContentSpec(
+                        title: 'Engine Type',
+                        detail: widget.motorModel.specification.engine),
+                    ContentSpec(
+                        title: 'Displacement',
+                        detail: widget.motorModel.specification.displacement),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 24,
+                      ),
+                      child: OrangeRoundedButton(
+                        routeTarget: const OrderScreen(),
+                        text: 'Buy Now',
+                      ),
+                    )
+                  ],
                 ),
-              )
+              ),
             ],
           )),
     );
@@ -139,17 +182,23 @@ class ContentSpec extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
-      child: Row(
+      child:
+      Column(
+        mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             '$title :',
             style: lightRegularTextStyle.copyWith(fontSize: 14),
           ),
           const SizedBox(width: 4),
-          Text(
-            detail,
-            style: lightSemiBoldTextStyle.copyWith(fontSize: 14),
+          Flexible(
+            child: Text(
+              detail,
+              textAlign: TextAlign.center,
+              style: lightSemiBoldTextStyle.copyWith(fontSize: 14),
+            ),
           ),
         ],
       ),
