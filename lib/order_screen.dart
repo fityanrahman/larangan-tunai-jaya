@@ -75,9 +75,10 @@ class _OrderScreenState extends State<OrderScreen> {
                               color: grayColor,
                             ),
                             focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    BorderSide(color: orangeColor, width: 2)),
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide:
+                                  BorderSide(color: orangeColor, width: 2),
+                            ),
                             filled: true,
                             fillColor: lightColor,
                             border: OutlineInputBorder(
@@ -98,9 +99,10 @@ class _OrderScreenState extends State<OrderScreen> {
                               color: grayColor,
                             ),
                             focusedBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(8),
-                                borderSide:
-                                    BorderSide(color: orangeColor, width: 2)),
+                              borderRadius: BorderRadius.circular(8),
+                              borderSide:
+                                  BorderSide(color: orangeColor, width: 2),
+                            ),
                             filled: true,
                             fillColor: lightColor,
                             border: OutlineInputBorder(

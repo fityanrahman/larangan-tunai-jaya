@@ -22,132 +22,134 @@ class _DetailScreenState extends State<DetailScreen> {
     return Scaffold(
       backgroundColor: darkColor,
       body: SingleChildScrollView(
-          padding: EdgeInsets.zero,
-          child: Column(
-            children: [
-              AspectRatio(
-                aspectRatio: 25 / 12,
-                child: Container(
-                  child: Image.asset(
-                    widget.motorModel.banner,
-                    fit: BoxFit.cover,
+        padding: EdgeInsets.zero,
+        child: Column(
+          children: [
+            AspectRatio(
+              aspectRatio: 25 / 12,
+              child: Container(
+                child: Image.asset(
+                  widget.motorModel.banner,
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            Container(
+              decoration: BoxDecoration(
+                color: lightColor,
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(32),
+                  bottomRight: Radius.circular(32),
+                ),
+              ),
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              margin: const EdgeInsets.only(bottom: 28),
+              child: Column(
+                children: [
+                  Text(
+                    widget.motorModel.name,
+                    style: darkBoldTextStyle.copyWith(fontSize: 24),
                   ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                    color: lightColor,
-                    borderRadius: const BorderRadius.only(
-                        bottomLeft: Radius.circular(32),
-                        bottomRight: Radius.circular(32))),
-                width: double.infinity,
-                padding: const EdgeInsets.all(16),
-                margin: const EdgeInsets.only(bottom: 28),
-                child: Column(
-                  children: [
-                    Text(
-                      widget.motorModel.name,
-                      style: darkBoldTextStyle.copyWith(fontSize: 24),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      'Rp ${widget.motorModel.price}',
-                      style: darkBoldTextStyle.copyWith(fontSize: 16),
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    Text(
-                      widget.motorModel.color[indexColor].name,
-                      style: darkSemiBoldTextStyle.copyWith(fontSize: 14),
-                    ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Container(
-                        width: 240,
-                        child: Image.asset(
-                            widget.motorModel.color[indexColor].img)),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    Container(
-                      width: double.infinity,
-                      height: 30,
-                      child: Center(
-                        child: ListView(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          children: [
-                            for (int i = 0;
-                                i < widget.motorModel.color.length;
-                                i++)
-                              InkWell(
-                                  onTap: () {
-                                    setState(() {
-                                      indexColor = i;
-                                      print('index color = $indexColor');
-                                    });
-                                  },
-                                  child: MotorColor(
-                                      color: widget.motorModel.color[i].hex))
-                          ],
-                        ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    'Rp ${widget.motorModel.price}',
+                    style: darkBoldTextStyle.copyWith(fontSize: 16),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Text(
+                    widget.motorModel.color[indexColor].name,
+                    style: darkSemiBoldTextStyle.copyWith(fontSize: 14),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Container(
+                    width: 240,
+                    child: Image.asset(widget.motorModel.color[indexColor].img),
+                  ),
+                  const SizedBox(
+                    height: 12,
+                  ),
+                  Container(
+                    width: double.infinity,
+                    height: 30,
+                    child: Center(
+                      child: ListView(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          for (int i = 0;
+                              i < widget.motorModel.color.length;
+                              i++)
+                            InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    indexColor = i;
+                                  });
+                                },
+                                child: MotorColor(
+                                    color: widget.motorModel.color[i].hex))
+                        ],
                       ),
                     ),
-                    const SizedBox(
-                      height: 16,
-                    ),
-                    Text(
-                      'Color Variant',
-                      style: darkRegularTextStyle.copyWith(fontSize: 14),
-                    )
-                  ],
-                ),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Text(
+                    'Color Variant',
+                    style: darkRegularTextStyle.copyWith(fontSize: 14),
+                  )
+                ],
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: Column(
-                  children: [
-                    Text(
-                      'SPECIFICATION',
-                      style: lightBoldTextStyle.copyWith(fontSize: 14),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                children: [
+                  Text(
+                    'SPECIFICATION',
+                    style: lightBoldTextStyle.copyWith(fontSize: 14),
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  ContentSpec(
+                      title: 'Dimension',
+                      detail: widget.motorModel.specification.dimension),
+                  ContentSpec(
+                      title: 'Fuel Tank Capacity',
+                      detail: '${widget.motorModel.specification.fuel} L'),
+                  ContentSpec(
+                      title: 'Engine Type',
+                      detail: widget.motorModel.specification.engine),
+                  ContentSpec(
+                      title: 'Displacement',
+                      detail: widget.motorModel.specification.displacement),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 24,
                     ),
-                    const SizedBox(
-                      height: 16,
+                    child: OrangeRoundedButton(
+                      routeTarget: OrderScreen(
+                          img: widget.motorModel.color[indexColor].img,
+                          name: widget.motorModel.name,
+                          color: widget.motorModel.color[indexColor].name,
+                          price: widget.motorModel.price),
+                      text: 'Buy Now',
                     ),
-                    ContentSpec(
-                        title: 'Dimension',
-                        detail: widget.motorModel.specification.dimension),
-                    ContentSpec(
-                        title: 'Fuel Tank Capacity',
-                        detail: '${widget.motorModel.specification.fuel} L'),
-                    ContentSpec(
-                        title: 'Engine Type',
-                        detail: widget.motorModel.specification.engine),
-                    ContentSpec(
-                        title: 'Displacement',
-                        detail: widget.motorModel.specification.displacement),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        vertical: 24,
-                      ),
-                      child: OrangeRoundedButton(
-                        routeTarget: OrderScreen(
-                            img: widget.motorModel.color[indexColor].img,
-                            name: widget.motorModel.name,
-                            color: widget.motorModel.color[indexColor].name,
-                            price: widget.motorModel.price),
-                        text: 'Buy Now',
-                      ),
-                    )
-                  ],
-                ),
+                  )
+                ],
               ),
-            ],
-          )),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
