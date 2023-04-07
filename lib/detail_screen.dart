@@ -162,11 +162,10 @@ class MotorColor extends StatelessWidget {
       height: 28,
       margin: const EdgeInsets.symmetric(horizontal: 6),
       decoration: BoxDecoration(
-          color: stringHex,
-          shape: BoxShape.circle,
-          border: Border.all(width: 2, color: const Color(0xffffffff)
-              // color: Color(0xff0795ba)
-              )),
+        color: stringHex,
+        shape: BoxShape.circle,
+        border: Border.all(width: 2, color: const Color(0xffffffff)),
+      ),
     );
   }
 }
@@ -182,8 +181,7 @@ class ContentSpec extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(bottom: 8),
-      child:
-      Column(
+      child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,

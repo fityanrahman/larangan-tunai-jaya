@@ -77,37 +77,12 @@ class MainScreen extends StatelessWidget {
                   mainAxisSpacing: 20,
                   crossAxisCount: 2,
                 ),
-                // itemBuilder: ((context, index) {
-                //   final MotorModel motorModel = motorList[index];
-                //   // return ItemCatalog(motor: motorModel);
-                //   motorList.map((e) => null)
-                //
-                //   // motorList.map((motors) {
-                //   // }).toList(); )
-                // },
-                // itemBuilder: (_, index) => ItemCatalog(motor: motorModel[index]),
                 itemBuilder: (context, index) {
                     final MotorModel motorModels = motorList[index];
                     return(ItemCatalog(motor: motorModels));
                 },
                 itemCount: motorList.length,
               )
-              // GridView.count(
-              //   childAspectRatio: 7/8,
-              //   padding: EdgeInsets.all(16),
-              //   shrinkWrap: true,
-              //   physics: const NeverScrollableScrollPhysics(),
-              //   crossAxisSpacing: 20,
-              //   mainAxisSpacing: 20,
-              //   crossAxisCount: 2,
-              //   children: const [
-              //     ItemCatalog(),
-              //     ItemCatalog(),
-              //     ItemCatalog(),
-              //     ItemCatalog(),
-              //     ItemCatalog(),
-              //   ],
-              // )
             ],
           )),
         ));
