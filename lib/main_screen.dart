@@ -39,7 +39,10 @@ class MainScreen extends StatelessWidget {
                       child: Container(
                         margin: const EdgeInsets.only(top: 8),
                         width: 200,
-                        child: Image.asset('assets/logo.png'),
+                        child: Image.asset(
+                          'assets/logo.png',
+                          opacity: const AlwaysStoppedAnimation(0),
+                        ),
                       ),
                     ),
                     Padding(
@@ -52,7 +55,7 @@ class MainScreen extends StatelessWidget {
                       height: 16,
                     ),
                     Text(
-                      'HONDA ${motorList[0].name}',
+                      '${motorList[0].name}',
                       style: darkBoldTextStyle.copyWith(fontSize: 22),
                     ),
                     const SizedBox(
